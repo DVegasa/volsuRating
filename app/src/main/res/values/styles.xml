@@ -11,4 +11,8 @@
         <item name="android:fontFamily">@font/ptsans</item>
     </style>
 
+    <style name="AppTheme.ButtonSmall">
+
+    </style>
+
 </resources>

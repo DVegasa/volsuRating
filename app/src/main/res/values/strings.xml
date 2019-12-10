@@ -6,4 +6,8 @@
 🔰 Твои баллы равны средним по группе\n
 ❗ Обрати внимание на рейтинг этого предмета. Ты в нижней части рейтинга\n
 </string>
+    <string name="welcome_btnNext">Далее</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
