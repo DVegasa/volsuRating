@@ -1,8 +1,10 @@
 package io.github.dvegasa.volsurating.screens.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import io.github.dvegasa.volsurating.R
+import io.github.dvegasa.volsurating.UrlParser
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ZachetkaPickerFragment.OnFragmentInteractionListener {
@@ -18,6 +20,13 @@ class MainActivity : AppCompatActivity(), ZachetkaPickerFragment.OnFragmentInter
 
         btnNext.setOnClickListener {
             openZachetkaPicker()
+            btnNext.isEnabled = false
+            Thread(Runnable {
+                Thread.sleep(1000L)
+                btnNext.post {
+                    btnNext.isEnabled = true
+                }
+            }).start()
         }
     }
 
@@ -29,10 +38,11 @@ class MainActivity : AppCompatActivity(), ZachetkaPickerFragment.OnFragmentInter
         }
     }
 
-    override fun onZachetkaPicked(url: String) {
+    override fun onZachetkaPicked(data: UrlParser.Data) {
         supportFragmentManager.beginTransaction().apply {
             remove(zachetkaPickerFragment)
             commit()
         }
+        Log.d("ed__", "Data received: $data")
     }
 }
