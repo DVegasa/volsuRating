@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity(), ZachetkaPickerFragment.OnFragmentInter
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolbarDef)
+        supportActionBar?.setTitle("ВолГУ рейтинг")
+
         btnNext.setOnClickListener {
             openZachetkaPicker()
         }

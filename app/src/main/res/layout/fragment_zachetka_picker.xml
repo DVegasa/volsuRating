@@ -3,12 +3,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.main.ZachetkaPickerFragment"
         android:background="@color/colorBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        tools:context=".screens.main.ZachetkaPickerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
@@ -16,11 +15,22 @@
 
     <Button
             android:id="@+id/btnConfirm"
+            style="@style/AppTheme.ButtonSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/AppTheme.ButtonSmall"
-            android:text="Confirm"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            android:text="Confirm" />
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:fontFamily="@font/ptsans_bold"
+            android:textAlignment="center"
+            android:text="Выбери свой институт, направление,\nгруппу, семестр и зачётную книжку"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"/>
 </FrameLayout>

@@ -6,17 +6,24 @@
         android:layout_height="match_parent"
         tools:context=".screens.main.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar"
+            android:id="@+id/toolbarDef"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="@string/welcome_welcomeText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:textColor="#000"
             android:textSize="18sp"
-            android:layout_margin="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDef" />
 
     <Button
             style="@style/AppTheme.ButtonSmall"
