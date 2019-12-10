@@ -12,7 +12,12 @@
     </style>
 
     <style name="AppTheme.ButtonSmall">
-
+        <item name="android:fontFamily">@font/ptsans_bold</item>
+        <item name="android:background">@drawable/bg_button_small</item>
+        <item name="android:textColor">@color/colorButtonSmallText</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">36dip</item>
+        <item name="android:minWidth">24dip</item>
     </style>
 
 </resources>

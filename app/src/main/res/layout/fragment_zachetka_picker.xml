@@ -21,6 +21,6 @@
             style="@style/AppTheme.ButtonSmall"
             android:text="Confirm"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_margin="12dp"/>
+            android:layout_margin="16dp"/>
 
 </FrameLayout>
