@@ -1,6 +1,7 @@
 package io.github.dvegasa.volsurating
 
 import android.util.Log
+import io.github.dvegasa.volsurating.storage.UserData
 import java.net.URLDecoder
 
 
@@ -9,7 +10,7 @@ import java.net.URLDecoder
  */
 
 val matchingRegex = """
-            https:\/\/volsu.ru\/rating\/\?plan_id=\S+&zach=(\d+)&semestr=(\d)&group=(\S+)
+            https:\/\/volsu.ru\/rating\/\?plan_id=(\S+)&zach=(\d+)&semestr=(\d)&group=(\S+)
         """.trimIndent()
 
 class UrlParser(var url: String) {
@@ -18,22 +19,25 @@ class UrlParser(var url: String) {
         url = decode(url)
     }
 
-    fun getData(): Data {
+    fun getData(): UserData {
         val regex = Regex(matchingRegex)
         val matchings = regex.find(url)
         try {
             val list = matchings!!.groupValues
-            val zachetkaId = list[1]
-            val semestr = list[2]
-            val groupName = list[3]
+            val planId = list[1]
+            val zachetkaId = list[2]
+            val semestr = list[3]
+            val groupName = list[4]
 
-            Log.d("ed__", "\n$zachetkaId\n$semestr\n$groupName")
+            Log.d("ed__", "Parser 1: \n$zachetkaId\n$semestr\n$groupName")
 
-            val data = Data(
+            val data = UserData(
                 zachetkaId.toInt(),
                 semestr.toInt(),
-                groupName
+                groupName,
+                planId
             )
+            Log.d("ed__", "Parser 2: $data")
             return data
         } catch (ex: Exception) {
             throw ex
@@ -43,10 +47,4 @@ class UrlParser(var url: String) {
     fun decode(url: String): String {
         return URLDecoder.decode(url, "UTF-8")
     }
-
-    data class Data(
-        val zachetkaId: Int,
-        val semestr: Int,
-        val groupName: String
-    )
 }

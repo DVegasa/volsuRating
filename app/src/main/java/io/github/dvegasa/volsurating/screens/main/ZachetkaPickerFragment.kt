@@ -11,16 +11,17 @@ import androidx.fragment.app.Fragment
 import io.github.dvegasa.volsurating.R
 import io.github.dvegasa.volsurating.UrlAutoDetector
 import io.github.dvegasa.volsurating.UrlParser
+import io.github.dvegasa.volsurating.storage.UserData
 import kotlinx.android.synthetic.main.fragment_zachetka_picker.*
 import kotlinx.android.synthetic.main.fragment_zachetka_picker.view.*
 
-const val ZACHETKA_PICKER_URL = "https://volsu.ru/rating/"
+private val ZACHETKA_PICKER_URL = "https://volsu.ru/rating/"
 
 class ZachetkaPickerFragment : Fragment(), UrlAutoDetector.Callback {
 
     private var listener: OnFragmentInteractionListener? = null
     private var urlDetector: UrlAutoDetector? = null
-    private var curData: UrlParser.Data? = null
+    private var curData: UserData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,7 +99,7 @@ class ZachetkaPickerFragment : Fragment(), UrlAutoDetector.Callback {
     }
 
     interface OnFragmentInteractionListener {
-        fun onZachetkaPicked(data: UrlParser.Data)
+        fun onZachetkaPicked(data: UserData)
     }
 
 }
