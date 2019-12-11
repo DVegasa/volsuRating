@@ -1,4 +1,4 @@
-package io.github.dvegasa.volsurating.screens.main
+package io.github.dvegasa.volsurating.screens
 
 import android.annotation.SuppressLint
 import android.content.Context
