@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import io.github.dvegasa.volsurating.R
-import io.github.dvegasa.volsurating.screens.ZachetkaPickerFragment
+import io.github.dvegasa.volsurating.screens.zachetka_picker_fragment.ZachetkaPickerFragment
 import io.github.dvegasa.volsurating.screens.main.MainActivity
-import io.github.dvegasa.volsurating.storage.UserData
-import io.github.dvegasa.volsurating.storage.UserDataStorage
+import io.github.dvegasa.volsurating.models.UserData
+import io.github.dvegasa.volsurating.storage.SharedPrefCache
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity(),
@@ -16,7 +16,7 @@ class WelcomeActivity : AppCompatActivity(),
 
     private val zachetkaPickerFragment =
         ZachetkaPickerFragment()
-    private val userDataStorage = UserDataStorage(this)
+    private val userDataStorage = SharedPrefCache(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

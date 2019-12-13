@@ -1,4 +1,4 @@
-package io.github.dvegasa.volsurating.screens
+package io.github.dvegasa.volsurating.screens.zachetka_picker_fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.github.dvegasa.volsurating.R
-import io.github.dvegasa.volsurating.UrlAutoDetector
-import io.github.dvegasa.volsurating.UrlParser
-import io.github.dvegasa.volsurating.storage.UserData
+import io.github.dvegasa.volsurating.data_processing.UrlParser
+import io.github.dvegasa.volsurating.models.UserData
 import kotlinx.android.synthetic.main.fragment_zachetka_picker.*
 import kotlinx.android.synthetic.main.fragment_zachetka_picker.view.*
 
@@ -31,7 +30,11 @@ class ZachetkaPickerFragment : Fragment(), UrlAutoDetector.Callback {
         val v = inflater.inflate(R.layout.fragment_zachetka_picker, container, false)
 
         initializeUI(v)
-        urlDetector = UrlAutoDetector(v.webView, this)
+        urlDetector =
+            UrlAutoDetector(
+                v.webView,
+                this
+            )
         return v
     }
 
@@ -81,7 +84,7 @@ class ZachetkaPickerFragment : Fragment(), UrlAutoDetector.Callback {
     private fun setBottomInformerVisibility(b: Boolean, url: String = "empty") {
         if (b) {
             val parser = UrlParser(url)
-            val data = parser.getData()
+            val data = parser.getUserData()
             tvInformerText.setText("""
                 Зачётка №${data.zachetkaId}
                 Группа ${data.groupName}

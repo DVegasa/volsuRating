@@ -1,4 +1,4 @@
-package io.github.dvegasa.volsurating.storage
+package io.github.dvegasa.volsurating.models
 
 /**
  * 11.12.2019

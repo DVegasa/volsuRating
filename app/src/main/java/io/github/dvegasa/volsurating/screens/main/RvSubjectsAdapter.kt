@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.dvegasa.volsurating.R
-import io.github.dvegasa.volsurating.Subject
+import io.github.dvegasa.volsurating.models.SubjectRich
 import kotlinx.android.synthetic.main.item_subject.view.*
 
 /**
  * 11.12.2019
  */
-class RvSubjectsAdapter(var list: ArrayList<Subject>) : RecyclerView.Adapter<RvSubjectsAdapter.VH>() {
+class RvSubjectsAdapter(var list: ArrayList<SubjectRich>) : RecyclerView.Adapter<RvSubjectsAdapter.VH>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_subject, parent, false)
         return VH(v)
@@ -27,8 +27,8 @@ class RvSubjectsAdapter(var list: ArrayList<Subject>) : RecyclerView.Adapter<RvS
     inner class VH(val v: View) : RecyclerView.ViewHolder(v) {
         @SuppressLint("SetTextI18n")
         fun bind(pos: Int) {
-            v.tvSubjectName.setText("${list[pos].emoji} ${list[pos].name}")
-            v.tvRating.setText(list[pos].rating.toString())
+            v.tvSubjectName.setText(list[pos].name)
+            v.tvRating.setText(list[pos].userRate.toString())
         }
     }
 }

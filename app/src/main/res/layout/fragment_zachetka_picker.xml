@@ -6,7 +6,7 @@
         android:background="@color/colorBackground"
         android:clickable="true"
         android:focusable="true"
-        tools:context=".screens.ZachetkaPickerFragment">
+        tools:context=".screens.zachetka_picker_fragment.ZachetkaPickerFragment">
 
     <WebView
             android:id="@+id/webView"

@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.dvegasa.volsurating.R
-import io.github.dvegasa.volsurating.Subject
+import io.github.dvegasa.volsurating.models.SubjectRich
 import io.github.dvegasa.volsurating.screens.welcome.WelcomeActivity
-import io.github.dvegasa.volsurating.storage.UserDataStorage
+import io.github.dvegasa.volsurating.storage.SharedPrefCache
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val userDataStorage = UserDataStorage(this)
+    private val userDataStorage = SharedPrefCache(this)
     private val adapter = RvSubjectsAdapter(arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareUI() {
         adapter.list = arrayListOf(
-            Subject("\uD83D\uDC4D", "Алгебра и теория чисел", 47),
-            Subject("❗", "Математический анализ", 12),
-            Subject("✅", "Геометрия и топология", 100),
-            Subject("\uD83D\uDC4D", "Информатика и програ...", 63),
-            Subject("\uD83D\uDD30", "Русский язык", 65)
+            SubjectRich("Алгебра и теория чисел", listOf(10, 20, 30, 30, 30, 30, 20), 42),
+            SubjectRich("Алгебра и теория чисел", listOf(55, 20, 30, 33, 30, 30, 20), 42),
+            SubjectRich("Алгебра и теория чисел", listOf(11, 20, 30, 30, 30, 30, 20), 42),
+            SubjectRich("Алгебра и теория чисел", listOf(43, 20, 30, 30, 30, 30, 20), 42),
+            SubjectRich("Алгебра и теория чисел", listOf(10, 63, 30, 30, 30, 30, 20), 42)
         )
 
         rvSubjects.adapter = adapter

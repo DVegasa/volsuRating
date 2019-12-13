@@ -1,4 +1,4 @@
-package io.github.dvegasa.volsurating
+package io.github.dvegasa.volsurating.screens.zachetka_picker_fragment
 
 import android.os.Handler
 import android.webkit.WebView

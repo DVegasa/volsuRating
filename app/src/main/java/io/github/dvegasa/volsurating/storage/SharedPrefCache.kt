@@ -1,6 +1,7 @@
 package io.github.dvegasa.volsurating.storage
 
 import android.content.Context
+import io.github.dvegasa.volsurating.models.UserData
 
 /**
  * 11.12.2019
@@ -13,7 +14,7 @@ const val SHARPREF_PARAM_SEMESTR = "semestr"
 const val SHARPREF_PARAM_GROUPNAME = "groupName"
 const val SHARPREF_PARAM_PLANID = "planId"
 
-class UserDataStorage(val context: Context) {
+class SharedPrefCache(val context: Context) {
 
     private val sharPref by lazy {
         context.getSharedPreferences(SHARPREF_NAME, Context.MODE_PRIVATE)

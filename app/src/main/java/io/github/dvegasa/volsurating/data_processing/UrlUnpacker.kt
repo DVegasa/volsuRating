@@ -1,7 +1,7 @@
-package io.github.dvegasa.volsurating
+package io.github.dvegasa.volsurating.data_processing
 
 import android.util.Log
-import io.github.dvegasa.volsurating.storage.UserData
+import io.github.dvegasa.volsurating.models.UserData
 import java.net.URLDecoder
 
 
@@ -19,7 +19,7 @@ class UrlParser(var url: String) {
         url = decode(url)
     }
 
-    fun getData(): UserData {
+    fun getUserData(): UserData {
         val regex = Regex(matchingRegex)
         val matchings = regex.find(url)
         try {
