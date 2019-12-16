@@ -1,6 +1,9 @@
 package io.github.dvegasa.volsurating.storage
 
 import android.content.Context
+import com.google.gson.Gson
+import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
+import io.github.dvegasa.volsurating.models.SubjectRich
 import io.github.dvegasa.volsurating.models.UserData
 
 /**
@@ -9,39 +12,59 @@ import io.github.dvegasa.volsurating.models.UserData
 
 const val SHARPREF_NAME = "app"
 
-const val SHARPREF_PARAM_ZACHETKA = "zachetkaId"
-const val SHARPREF_PARAM_SEMESTR = "semestr"
-const val SHARPREF_PARAM_GROUPNAME = "groupName"
-const val SHARPREF_PARAM_PLANID = "planId"
+const val SHARPREF_USERDATA_ZACHETKA = "zachetkaId"
+const val SHARPREF_USERDATA_SEMESTR = "semestr"
+const val SHARPREF_USERDATA_GROUPNAME = "groupName"
+const val SHARPREF_USERDATA_PLANID = "planId"
 
-class SharedPrefCache(val context: Context) {
+const val SHARPREF_SUBJECTRICHES = "subjectRiches"
+
+class SharedPrefCache(private val context: Context) {
 
     private val sharPref by lazy {
         context.getSharedPreferences(SHARPREF_NAME, Context.MODE_PRIVATE)
     }
 
-    fun saveUserData(data: UserData) {
-        val editor = sharPref.edit()
-        editor.putInt(SHARPREF_PARAM_ZACHETKA, data.zachetkaId)
-        editor.putInt(SHARPREF_PARAM_SEMESTR, data.semestr)
-        editor.putString(SHARPREF_PARAM_GROUPNAME, data.groupName)
-        editor.putString(SHARPREF_PARAM_PLANID, data.planId)
-        editor.apply()
+    fun isUserDataSaved(): Boolean {
+        return sharPref.contains(SHARPREF_USERDATA_PLANID)
+                && sharPref.contains(SHARPREF_USERDATA_ZACHETKA)
+                && sharPref.contains(SHARPREF_USERDATA_GROUPNAME)
+                && sharPref.contains(SHARPREF_USERDATA_SEMESTR)
     }
 
-    fun isUserDataSaved(): Boolean {
-        return sharPref.contains(SHARPREF_PARAM_PLANID)
-                && sharPref.contains(SHARPREF_PARAM_ZACHETKA)
-                && sharPref.contains(SHARPREF_PARAM_GROUPNAME)
-                && sharPref.contains(SHARPREF_PARAM_SEMESTR)
+    fun saveUserData(data: UserData) {
+        val editor = sharPref.edit()
+        editor.putInt(SHARPREF_USERDATA_ZACHETKA, data.zachetkaId)
+        editor.putInt(SHARPREF_USERDATA_SEMESTR, data.semestr)
+        editor.putString(SHARPREF_USERDATA_GROUPNAME, data.groupName)
+        editor.putString(SHARPREF_USERDATA_PLANID, data.planId)
+        editor.apply()
     }
 
     fun getUserData(): UserData {
         return UserData(
-            zachetkaId = sharPref.getInt(SHARPREF_PARAM_ZACHETKA, 0),
-            semestr = sharPref.getInt(SHARPREF_PARAM_SEMESTR, 0),
-            groupName = sharPref.getString(SHARPREF_PARAM_GROUPNAME, "") ?: "",
-            planId = sharPref.getString(SHARPREF_PARAM_PLANID, "") ?: ""
+            zachetkaId = sharPref.getInt(SHARPREF_USERDATA_ZACHETKA, 0),
+            semestr = sharPref.getInt(SHARPREF_USERDATA_SEMESTR, 0),
+            groupName = sharPref.getString(SHARPREF_USERDATA_GROUPNAME, "") ?: "",
+            planId = sharPref.getString(SHARPREF_USERDATA_PLANID, "") ?: ""
         )
+    }
+
+    fun isSubjectRichSaved(): Boolean {
+        return sharPref.contains(SHARPREF_SUBJECTRICHES)
+    }
+
+    fun saveSubjectRiches(list: List<SubjectRich>) {
+        val editor = sharPref.edit()
+        val jsoned = Gson().toJson(list)
+        editor.putString(SHARPREF_SUBJECTRICHES, jsoned)
+        editor.apply()
+        BroadcastEvents().sendDataUpdated(context, ArrayList(list))
+    }
+
+    fun getSubjectRiches(): ArrayList<SubjectRich> {
+        val jsoned = sharPref.getString(SHARPREF_SUBJECTRICHES, "0")
+        val result = Gson().fromJson(jsoned, Array<SubjectRich>::class.java).toList()
+        return result as ArrayList<SubjectRich>
     }
 }

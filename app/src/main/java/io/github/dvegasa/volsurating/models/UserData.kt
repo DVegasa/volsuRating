@@ -10,7 +10,7 @@ data class UserData(
     val groupName: String,
     val planId: String
 ) {
-    fun dataLink() =
+    fun getUrl() =
         """https://volsu.ru/rating/?plan_id=$planId&zach=All&semestr=$semestr&group=$groupName"""
 
 }
