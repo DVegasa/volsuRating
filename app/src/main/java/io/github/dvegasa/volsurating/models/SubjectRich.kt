@@ -9,4 +9,11 @@ data class SubjectRich(
     var rates: MutableList<Int>,
     var userRate: Int,
     var ekzamen: String = ""
-)
+) {
+    fun isEmpty(): Boolean {
+        rates.forEach {
+            if (it != 0) return false
+        }
+        return true
+    }
+}

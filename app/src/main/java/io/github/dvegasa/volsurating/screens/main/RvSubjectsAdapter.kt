@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.github.dvegasa.volsurating.R
+import io.github.dvegasa.volsurating.data_processing.Statistics
 import io.github.dvegasa.volsurating.models.SubjectRich
 import kotlinx.android.synthetic.main.item_subject.view.*
 
@@ -61,7 +62,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
             } else {
                 val subj = list[pos]
                 v.tvSubjectName.setText(subj.name)
-
+                v.tvEmoji.setText(Statistics.getEmojiForSubject(subj))
                 if (subj.userRate <= 0) {
                     v.tvRating.setText("")
                 } else {
