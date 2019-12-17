@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -1,45 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/colorBackground"
-        android:id="@+id/root">
+        android:background="@color/colorBackground">
 
     <TextView
+            android:id="@+id/tvEmoji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:textSize="19sp"
-            android:id="@+id/tvEmoji"
             android:textColor="#000"
-            tools:text="👍"
-            android:layout_marginLeft="8dp"/>
+            android:textSize="19sp"
+            tools:text="👍" />
 
-    <TextView
-            android:id="@+id/tvSubjectName"
+    <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Алгебра и теория чисел"
-            android:textColor="#000"
-            android:textSize="19sp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginRight="42dp"
-            android:ellipsize="end"
-            android:maxLines="1"/>
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tvSubjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#000"
+                android:textSize="19sp"
+                android:layout_weight="1"
+                tools:text="Алгебра и теория чисел" />
+
+        <TextView
+                android:id="@+id/tvSubjectEkzamen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Зачет с оценкой"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+    </LinearLayout>
 
     <TextView
             android:id="@+id/tvRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:layout_gravity="right"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="12dp"
             android:fontFamily="@font/montserrat"
-            tools:text="47"
             android:textColor="#000"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="12dp"/>
+            android:textSize="22sp"
+            tools:text="47" />
+
+    <FrameLayout
+            android:id="@+id/flExpandablePart"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="59dp"
+            android:background="@color/colorButtonSmallDisabled"
+            android:visibility="gone" />
 </FrameLayout>

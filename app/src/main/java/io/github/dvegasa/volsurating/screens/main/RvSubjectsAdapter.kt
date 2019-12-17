@@ -1,6 +1,7 @@
 package io.github.dvegasa.volsurating.screens.main
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
     RecyclerView.Adapter<RvSubjectsAdapter.VH>() {
 
     private var hiddenSubjects = ArrayList<SubjectRich>()
+    private var expandedIndicies = Array(list.size) {false}
 
     fun updateList(list: ArrayList<SubjectRich>) {
         this.list.clear()
@@ -35,6 +37,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
         }
         this.list = ArrayList(tempList)
         this.hiddenSubjects = ArrayList(tempHidden)
+        this.expandedIndicies = Array(list.size) {false}
         notifyDataSetChanged()
     }
 
@@ -90,6 +93,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
                     tvEmoji.setText(Statistics.getEmojiForSubject(subj))
                 }
                 tvRating.setText(subj.userRate.toString())
+                tvSubjectEkzamen.setText(subj.ekzamen)
                 tvSubjectName.setTextColor(
                     ResourcesCompat.getColor(
                         resources,
@@ -97,6 +101,29 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
                         null
                     )
                 )
+
+                setOnClickListener {
+                    expandedIndicies[pos] = !expandedIndicies[pos]
+                    notifyItemChanged(pos)
+                }
+                updatedExpandedState(v, pos)
+            }
+        }
+
+        private fun updatedExpandedState(v: View, pos: Int) {
+            val expanded = expandedIndicies[pos]
+            if (expanded) {
+                v.flExpandablePart.visibility = View.VISIBLE
+                v.tvSubjectEkzamen.visibility = View.VISIBLE
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    v.root.elevation = 32.0f
+                }
+            } else {
+                v.flExpandablePart.visibility = View.GONE
+                v.tvSubjectEkzamen.visibility = View.GONE
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    v.root.elevation = 0.0f
+                }
             }
         }
     }
