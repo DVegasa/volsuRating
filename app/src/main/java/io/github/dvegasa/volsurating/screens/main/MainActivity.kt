@@ -12,19 +12,22 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.github.dvegasa.volsurating.Emoji
 import io.github.dvegasa.volsurating.R
 import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
+import io.github.dvegasa.volsurating.data_processing.Statistics
 import io.github.dvegasa.volsurating.data_processing.UsefullDataManager
 import io.github.dvegasa.volsurating.models.SubjectRich
 import io.github.dvegasa.volsurating.screens.welcome.WelcomeActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
 import kotlinx.android.synthetic.main.activity_main.*
 
-inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
+inline fun <reified T> Gson.fromJson(json: String) =
+    this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
 class MainActivity : AppCompatActivity() {
 
-    private val userDataStorage = SharedPrefCache(this)
+    private val cache = SharedPrefCache(this)
     private val adapter = RvSubjectsAdapter(arrayListOf())
     private val usefullDataManager = UsefullDataManager(this)
 
@@ -45,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (userDataStorage.isUserDataSaved()) {
-            Log.d("ed__", "Data saved:\n${userDataStorage.getUserData()}")
+        if (cache.isUserDataSaved()) {
+            Log.d("ed__", "Data saved:\n${cache.getUserData()}")
         } else {
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
@@ -68,8 +71,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbarDef)
         supportActionBar?.setTitle("ВолГУ рейтинг")
 
-        adapter.list = arrayListOf(
-            SubjectRich("Идёт загрузка...", mutableListOf(), -1)
+        adapter.updateList(
+            arrayListOf(
+                SubjectRich("Идёт загрузка...", mutableListOf(), -1)
+            )
         )
 
         rvSubjects.adapter = adapter
@@ -81,7 +86,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showData(list: ArrayList<SubjectRich>) {
-        adapter.list = list
-        adapter.notifyDataSetChanged()
+        adapter.updateList(list)
+        tvScore.setText(Statistics.userSum(list).toString())
+        val userRating = Statistics.userRating(list)
+        if (userRating == 1) {
+            tvRating.setText(Emoji.crown)
+        } else {
+            tvRating.setText(userRating.toString())
+        }
     }
 }
