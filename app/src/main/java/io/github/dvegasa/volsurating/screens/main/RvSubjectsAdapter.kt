@@ -27,10 +27,10 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
         val tempList = arrayListOf<SubjectRich>()
         val tempHidden = arrayListOf<SubjectRich>()
         for (i in list.indices) {
-            if (list[i].userRate != 0) {
-                tempList.add(list[i])
-            } else {
+            if (list[i].userRate == 0) {
                 tempHidden.add(list[i])
+            } else {
+                tempList.add(list[i])
             }
         }
         this.list = ArrayList(tempList)
@@ -52,31 +52,47 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
     inner class VH(val v: View) : RecyclerView.ViewHolder(v) {
         @SuppressLint("SetTextI18n")
         fun bind(pos: Int) {
-
             if (pos == list.size) {
-                if (hiddenSubjects.size != 0) {
-                    v.tvSubjectName.setText("Предметы без рейтинга: ${hiddenSubjects.size}")
-                    v.tvRating.setText("")
-                    v.tvSubjectName.setTextColor(
-                        ResourcesCompat.getColor(
-                            v.resources,
-                            R.color.colorPrimaryDark,
-                            null
-                        )
-                    )
-                }
+                initHiddentTitle(v, pos)
             } else {
-                val subj = list[pos]
-                v.tvSubjectName.setText(subj.name)
-                v.tvEmoji.setText(Statistics.getEmojiForSubject(subj))
-                if (subj.userRate <= 0) {
-                    v.tvRating.setText("")
-                } else {
-                    v.tvRating.setText(subj.userRate.toString())
-                }
-                v.tvSubjectName.setTextColor(
+                initSubjectTitle(v, pos)
+            }
+        }
+
+        private fun initHiddentTitle(v: View, pos: Int) {
+            if (hiddenSubjects.isEmpty()) return
+
+            v.apply {
+                tvSubjectName.setText("Предметы без рейтинга: ${hiddenSubjects.size}")
+                tvRating.setText("")
+                tvSubjectName.setTextColor(
                     ResourcesCompat.getColor(
                         v.resources,
+                        R.color.colorPrimaryDark,
+                        null
+                    )
+                )
+
+                setOnClickListener {
+                    list.addAll(hiddenSubjects)
+                    hiddenSubjects.clear()
+                    notifyDataSetChanged()
+                }
+            }
+        }
+
+        private fun initSubjectTitle(v: View, pos: Int) {
+            val subj = list[pos]
+
+            v.apply {
+                tvSubjectName.setText(subj.name)
+                if (subj.userRate != 0) {
+                    tvEmoji.setText(Statistics.getEmojiForSubject(subj))
+                }
+                tvRating.setText(subj.userRate.toString())
+                tvSubjectName.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources,
                         android.R.color.black,
                         null
                     )
