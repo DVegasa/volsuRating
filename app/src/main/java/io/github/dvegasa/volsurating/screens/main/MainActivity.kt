@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             Log.d("ed__", "MainActivity: Data updated!")
+            swipeRvSubjects.isRefreshing = false
             val status = p1?.getStringExtra("status")
 
             if (status == BroadcastEvents.DATA_UPDATED) {
@@ -83,6 +84,10 @@ class MainActivity : AppCompatActivity() {
         rvSubjects.addItemDecoration(
             DividerItemDecoration(rvSubjects.context, ll.orientation)
         )
+
+        swipeRvSubjects.setOnRefreshListener {
+            usefullDataManager.forceRefrestData()
+        }
     }
 
     private fun showData(list: ArrayList<SubjectRich>) {

@@ -22,4 +22,8 @@ class UsefullDataManager(private val context: Context) {
             ratingDataLoader.loadAndCacheData(cache.getUserData())
         }
     }
+    
+    fun forceRefrestData() {
+        ratingDataLoader.loadAndCacheData(cache.getUserData())
+    }
 }

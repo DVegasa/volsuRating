@@ -17,18 +17,24 @@ import kotlinx.android.synthetic.main.item_subject.view.*
 class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
     RecyclerView.Adapter<RvSubjectsAdapter.VH>() {
 
-    private val hiddenSubjects = ArrayList<SubjectRich>()
+    private var hiddenSubjects = ArrayList<SubjectRich>()
 
     fun updateList(list: ArrayList<SubjectRich>) {
         this.list.clear()
-        hiddenSubjects.clear()
+        this.hiddenSubjects.clear()
+        notifyDataSetChanged()
+
+        val tempList = arrayListOf<SubjectRich>()
+        val tempHidden = arrayListOf<SubjectRich>()
         for (i in list.indices) {
             if (list[i].userRate != 0) {
-                this.list.add(list[i])
+                tempList.add(list[i])
             } else {
-                hiddenSubjects.add(list[i])
+                tempHidden.add(list[i])
             }
         }
+        this.list = ArrayList(tempList)
+        this.hiddenSubjects = ArrayList(tempHidden)
         notifyDataSetChanged()
     }
 
@@ -68,6 +74,13 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
                 } else {
                     v.tvRating.setText(subj.userRate.toString())
                 }
+                v.tvSubjectName.setTextColor(
+                    ResourcesCompat.getColor(
+                        v.resources,
+                        android.R.color.black,
+                        null
+                    )
+                )
             }
         }
     }
