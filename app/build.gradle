@@ -38,4 +38,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.github.dvegasa.volsurating.Emoji
@@ -22,6 +23,7 @@ import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
 import io.github.dvegasa.volsurating.data_processing.Statistics
 import io.github.dvegasa.volsurating.data_processing.UsefullDataManager
 import io.github.dvegasa.volsurating.models.SubjectRich
+import io.github.dvegasa.volsurating.models.UserData
 import io.github.dvegasa.volsurating.screens.settings.SettingsActivity
 import io.github.dvegasa.volsurating.screens.welcome.WelcomeActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
@@ -62,11 +64,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setAnalyticUserProperty(userData: UserData) {
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        firebaseAnalytics.setUserProperty("groupName", userData.groupName)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (cache.isUserDataSaved()) {
-            Log.d("ed__", "Data saved:\n${cache.getUserData()}")
+            val userData = cache.getUserData()
+            Log.d("ed__", "Data saved:\n${userData}")
+            setAnalyticUserProperty(userData)
         } else {
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()

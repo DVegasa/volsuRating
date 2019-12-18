@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "369960463446",
+    "firebase_url": "https://volsurating.firebaseio.com",
+    "project_id": "volsurating",
+    "storage_bucket": "volsurating.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369960463446:android:9ee5669b1ee8f0b7bd9ff7",
+        "android_client_info": {
+          "package_name": "io.github.dvegasa.volsurating"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369960463446-19kkkhve5fbjho7trk937qhfhotppteq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzVPBayOZ8zAiyC5ICvYHLeyKowprgmmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369960463446-19kkkhve5fbjho7trk937qhfhotppteq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
