@@ -58,6 +58,9 @@ class Statistics {
         }
 
         fun getMedian(subj: SubjectRich): Int {
+            if (subj.rates.isEmpty()) {
+                return 0
+            }
             val sorted = subj.rates.sorted()
             return if (sorted.size % 2 != 0) {
                 sorted[sorted.size / 2]
@@ -75,8 +78,8 @@ class Statistics {
 
         fun getSufficientRate(subj: SubjectRich): Int {
             return when {
-                subj.ekzamen.contains("Экзамен") -> 71
-                subj.ekzamen.contains("Зачет с оценкой") -> 71
+                subj.ekzamen.contains("Экзамен") -> 91
+                subj.ekzamen.contains("Зачет с оценкой") -> 91
                 subj.ekzamen.contains("Зачет") -> 60
                 else -> 999
             }
