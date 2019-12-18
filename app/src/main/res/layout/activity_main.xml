@@ -14,6 +14,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+            android:padding="2dp"
+            android:id="@+id/tvAnnouncement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarDef"
+            tools:text="Объявление"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:background="#D4D4D4"/>
+
     <LinearLayout
             android:id="@+id/llTopPanel"
             android:layout_width="match_parent"
@@ -23,7 +37,7 @@
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarDef">
+            app:layout_constraintTop_toBottomOf="@id/tvAnnouncement">
 
         <FrameLayout
                 android:layout_width="0dp"
@@ -81,10 +95,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#E4E4E4"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llTopPanel"
-            android:orientation="horizontal"/>
+            app:layout_constraintTop_toBottomOf="@id/llTopPanel" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRvSubjects"
@@ -98,7 +112,6 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSubjects"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

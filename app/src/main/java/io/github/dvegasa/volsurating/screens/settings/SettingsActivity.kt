@@ -3,12 +3,12 @@ package io.github.dvegasa.volsurating.screens.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import io.github.dvegasa.volsurating.screens.main.MainActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
-
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -26,10 +26,19 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(io.github.dvegasa.volsurating.R.xml.root_preferences, rootKey)
+            setPreferencesFromResource(
+                io.github.dvegasa.volsurating.R.xml.root_preferences,
+                rootKey
+            )
             findPreference<Preference>("settingsLogout")?.setOnPreferenceClickListener {
                 if (context != null) {
                     clearUserData(context!!)
+                }
+                true
+            }
+            findPreference<Preference>("settingsAuthor")?.setOnPreferenceClickListener {
+                if (context != null) {
+                    Toast.makeText(context, "♥", Toast.LENGTH_SHORT).show()
                 }
                 true
             }
