@@ -19,7 +19,7 @@ const val SHARPREF_USERDATA_PLANID = "planId"
 
 const val SHARPREF_SUBJECTRICHES = "subjectRiches"
 
-class SharedPrefCache(private val context: Context) {
+class SharedPrefCache(val context: Context) {
 
     private val sharPref by lazy {
         context.getSharedPreferences(SHARPREF_NAME, Context.MODE_PRIVATE)

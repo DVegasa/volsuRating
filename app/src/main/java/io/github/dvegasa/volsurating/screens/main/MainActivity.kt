@@ -41,11 +41,22 @@ class MainActivity : AppCompatActivity() {
             swipeRvSubjects.isRefreshing = false
             val status = p1?.getStringExtra("status")
 
-            if (status == BroadcastEvents.DATA_UPDATED) {
-                val dataJsoned = p1?.getStringExtra("msg") ?: ""
-                val data: ArrayList<SubjectRich> = Gson().fromJson(dataJsoned)
+            when (status) {
+                BroadcastEvents.DATA_UPDATED -> {
+                    val dataJsoned = p1?.getStringExtra("msg") ?: ""
+                    val data: ArrayList<SubjectRich> = Gson().fromJson(dataJsoned)
 
-                showData(data)
+                    showData(data)
+                }
+
+                BroadcastEvents.ERROR_CRITICAL_PARSING -> {
+                    Toast.makeText(p0, "Ошибка в обработке данных", Toast.LENGTH_LONG).show()
+                    cache.clearUserData()
+                    val intent = Intent(p0, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }

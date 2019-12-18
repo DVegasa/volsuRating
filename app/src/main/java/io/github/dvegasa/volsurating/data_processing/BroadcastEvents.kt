@@ -12,7 +12,9 @@ import io.github.dvegasa.volsurating.models.SubjectRich
 class BroadcastEvents {
     companion object {
         const val EVENT_FILTER = "usefullDataLocalBroadcast"
+
         const val DATA_UPDATED = "dataUpdated"
+        const val ERROR_CRITICAL_PARSING = "errorCriticalParsing"
     }
 
     fun sendDataUpdated(context: Context, data: ArrayList<SubjectRich>) {
@@ -20,6 +22,13 @@ class BroadcastEvents {
         val intent = Intent(EVENT_FILTER)
         intent.putExtra("status", DATA_UPDATED)
         intent.putExtra("msg", json)
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+    }
+
+    fun sendErrorCriticalParsing(context: Context, e: Exception?) {
+        e?.printStackTrace()
+        val intent = Intent(EVENT_FILTER)
+        intent.putExtra("status", ERROR_CRITICAL_PARSING)
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
     }
 }
