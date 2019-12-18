@@ -50,6 +50,16 @@ class SharedPrefCache(private val context: Context) {
         )
     }
 
+    fun clearUserData() {
+        val editor = sharPref.edit()
+        editor.remove(SHARPREF_USERDATA_ZACHETKA)
+        editor.remove(SHARPREF_USERDATA_SEMESTR)
+        editor.remove(SHARPREF_USERDATA_GROUPNAME)
+        editor.remove(SHARPREF_USERDATA_PLANID)
+        editor.remove(SHARPREF_SUBJECTRICHES)
+        editor.apply()
+    }
+
     fun isSubjectRichSaved(): Boolean {
         return sharPref.contains(SHARPREF_SUBJECTRICHES)
     }

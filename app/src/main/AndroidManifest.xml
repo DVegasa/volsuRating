@@ -13,6 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+                android:name=".screens.settings.SettingsActivity"
+                android:label="Настройки"
+                android:parentActivityName=".screens.main.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="io.github.dvegasa.volsurating.screens.main.MainActivity" />
+        </activity>
         <activity android:name=".screens.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.welcome.WelcomeActivity">
-
-        </activity>
+        <activity android:name=".screens.welcome.WelcomeActivity" />
     </application>
 
 </manifest>

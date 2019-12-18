@@ -6,6 +6,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,6 +21,7 @@ import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
 import io.github.dvegasa.volsurating.data_processing.Statistics
 import io.github.dvegasa.volsurating.data_processing.UsefullDataManager
 import io.github.dvegasa.volsurating.models.SubjectRich
+import io.github.dvegasa.volsurating.screens.settings.SettingsActivity
 import io.github.dvegasa.volsurating.screens.welcome.WelcomeActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,12 +64,35 @@ class MainActivity : AppCompatActivity() {
             .registerReceiver(broadcastReceiver, IntentFilter(BroadcastEvents.EVENT_FILTER))
 
         prepareUI()
-        usefullDataManager.requestData()
+        try {
+            usefullDataManager.requestData()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Ошибка загрузки данных", Toast.LENGTH_LONG).show()
+            cache.clearUserData()
+            finish()
+        }
     }
+
+
 
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
         super.onDestroy()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionSettings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun prepareUI() {

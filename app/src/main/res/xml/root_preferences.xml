@@ -1,0 +1,13 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Аккаунт">
+
+        <Preference
+                app:key="settingsLogout"
+                android:title="Сменить зачётку"
+                android:summary="Выйти из текущего аккаунта и поменять номер зачётной книжки"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -13,6 +13,9 @@ import org.jsoup.Jsoup
 class RatingDataLoader(private val cache: SharedPrefCache) {
 
     fun loadAndCacheData(userData: UserData) {
+        if (userData.planId.isEmpty()) {
+            throw Exception("UserData is null")
+        }
         Thread(Runnable {
             Log.d("ed__", "Loading started...")
             val url = userData.getUrl()

@@ -1,4 +1,5 @@
 
+import android.util.Log
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
@@ -26,6 +27,7 @@ class VolsuRatingHtmlParser(val doc: Document) {
         }
 
         if (map.isEmpty()) {
+            Log.e("ed__", "Map: ${map}\nDoc: ${doc}")
             throw Exception("Empty schoolboysData. Looks like error in URL")
         }
 
