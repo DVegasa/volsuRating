@@ -2,20 +2,42 @@ package io.github.dvegasa.volsurating.screens.settings
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import io.github.dvegasa.volsurating.BuildConfig
+import io.github.dvegasa.volsurating.data_processing.UsefullDataManager
 import io.github.dvegasa.volsurating.screens.main.MainActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
 
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+    override fun onSharedPreferenceChanged(p0: SharedPreferences?, key: String?) {
+        if (key == "semestr") {
+            Log.d("ed__", "onSharedPreferenceChanged: key = 'semestr'")
+            UsefullDataManager(this).forceRefrestData()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onDestroy() {
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .unregisterOnSharedPreferenceChangeListener(this)
+        super.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
