@@ -1,7 +1,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="Аккаунт">
+    <PreferenceCategory app:title="Рейтинг">
+
+        <ListPreference
+            android:title="Изменить семестр"
+                app:key="semestr"
+                android:entries="@array/settingsSemestr"
+                android:entryValues="@array/settingsSemestr_values"/>
 
         <Preference
                 android:summary="Выйти из текущего аккаунта и поменять номер зачётной книжки"
@@ -12,8 +18,16 @@
 
     <PreferenceCategory app:title="О приложении">
         <Preference
-                android:title=""
+                android:title="Связь с разработчиком"
+                android:summary="Откроется диалог ВКонтакте"
+                app:key="settingsContactDeveloper" />
+        <Preference
                 android:summary="Разработал Эдуард Халтурин @dvegasa"
+                android:title=""
                 app:key="settingsAuthor" />
+        <Preference
+                android:summary="Версия приложения"
+                android:title=""
+                app:key="settingsVersion" />
     </PreferenceCategory>
 </PreferenceScreen>

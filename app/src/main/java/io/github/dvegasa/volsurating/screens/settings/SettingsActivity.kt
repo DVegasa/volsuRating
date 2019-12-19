@@ -2,11 +2,15 @@ package io.github.dvegasa.volsurating.screens.settings
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import io.github.dvegasa.volsurating.BuildConfig
 import io.github.dvegasa.volsurating.screens.main.MainActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
 
@@ -25,6 +29,9 @@ class SettingsActivity : AppCompatActivity() {
 
 
     class SettingsFragment : PreferenceFragmentCompat() {
+
+        private val handler = Handler()
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(
                 io.github.dvegasa.volsurating.R.xml.root_preferences,
@@ -41,6 +48,31 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(context, "♥", Toast.LENGTH_SHORT).show()
                 }
                 true
+            }
+            findPreference<Preference>("settingsContactDeveloper")?.setOnPreferenceClickListener { pref ->
+                pref.title = "Ожидайте..."
+                pref.isEnabled = false
+                Thread(Runnable {
+                    Thread.sleep(5000L)
+                    handler.post {
+                        pref.isEnabled = true
+                        pref.title = "Связь с разработчиком"
+                    }
+                })
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.me/dvegasa")))
+                true
+            }
+            findPreference<Preference>("settingsVersion")?.summary =
+                "Версия приложения ${BuildConfig.VERSION_NAME}"
+            if (context != null) {
+                findPreference<ListPreference>("semestr")?.apply {
+                    summary =
+                        "Сейчас отображается: ${SharedPrefCache(context!!).getUserData().semestr}"
+                    setOnPreferenceChangeListener { preference, newValue ->
+                        summary = "Сейчас отображается: ${newValue}"
+                        true
+                    }
+                }
             }
         }
 

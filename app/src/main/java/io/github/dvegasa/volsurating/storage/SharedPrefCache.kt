@@ -1,6 +1,7 @@
 package io.github.dvegasa.volsurating.storage
 
 import android.content.Context
+import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
 import io.github.dvegasa.volsurating.models.SubjectRich
@@ -25,6 +26,10 @@ class SharedPrefCache(val context: Context) {
         context.getSharedPreferences(SHARPREF_NAME, Context.MODE_PRIVATE)
     }
 
+    private val settingsSharPref by lazy {
+        PreferenceManager.getDefaultSharedPreferences(context)
+    }
+
     fun isUserDataSaved(): Boolean {
         return sharPref.contains(SHARPREF_USERDATA_PLANID)
                 && sharPref.contains(SHARPREF_USERDATA_ZACHETKA)
@@ -44,7 +49,7 @@ class SharedPrefCache(val context: Context) {
     fun getUserData(): UserData {
         return UserData(
             zachetkaId = sharPref.getInt(SHARPREF_USERDATA_ZACHETKA, 0),
-            semestr = sharPref.getInt(SHARPREF_USERDATA_SEMESTR, 0),
+            semestr = settingsSharPref.getString(SHARPREF_USERDATA_SEMESTR, "1")!!.toInt(),
             groupName = sharPref.getString(SHARPREF_USERDATA_GROUPNAME, "") ?: "",
             planId = sharPref.getString(SHARPREF_USERDATA_PLANID, "") ?: ""
         )
@@ -76,5 +81,11 @@ class SharedPrefCache(val context: Context) {
         val jsoned = sharPref.getString(SHARPREF_SUBJECTRICHES, "0")
         val result = Gson().fromJson(jsoned, Array<SubjectRich>::class.java).toList()
         return result as ArrayList<SubjectRich>
+    }
+
+    fun clearSubjectRiches() {
+        val editor = sharPref.edit()
+        editor.remove(SHARPREF_SUBJECTRICHES)
+        editor.apply()
     }
 }
