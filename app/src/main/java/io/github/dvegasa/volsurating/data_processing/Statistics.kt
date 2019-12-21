@@ -38,8 +38,8 @@ class Statistics {
         }
 
         fun getEmojiForSubject(subj: SubjectRich): String {
-            if (subj.isEmpty()) {
-                return Emoji.question
+            if (subj.userRate == 0) {
+                return ""
             }
 
             val (iFirst, iSecond) = getTercelBordersIndicies(subj)

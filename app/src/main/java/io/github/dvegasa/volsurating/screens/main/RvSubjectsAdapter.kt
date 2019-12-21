@@ -26,7 +26,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
     RecyclerView.Adapter<RvSubjectsAdapter.VH>() {
 
     private var hiddenSubjects = ArrayList<SubjectRich>()
-    private var expandedIndicies = Array(list.size) {false}
+    private var expandedIndicies = Array(list.size) { false }
 
     fun updateList(list: ArrayList<SubjectRich>) {
         this.list.clear()
@@ -44,7 +44,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
         }
         this.list = ArrayList(tempList)
         this.hiddenSubjects = ArrayList(tempHidden)
-        this.expandedIndicies = Array(list.size) {false}
+        this.expandedIndicies = Array(list.size) { false }
         notifyDataSetChanged()
     }
 
@@ -96,9 +96,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
 
             v.apply {
                 tvSubjectName.setText(subj.name)
-                if (subj.userRate != 0) {
-                    tvEmoji.setText(Statistics.getEmojiForSubject(subj))
-                }
+                tvEmoji.setText(Statistics.getEmojiForSubject(subj))
                 tvRating.setText(subj.userRate.toString())
                 tvSubjectEkzamen.setText(subj.ekzamen)
                 tvSubjectName.setTextColor(
@@ -140,7 +138,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
                 chart.xAxis.position = XAxis.XAxisPosition.TOP
                 chart.xAxis.valueFormatter = object : ValueFormatter() {
                     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                        return "${(value*5).toInt()}+"
+                        return "${(value * 5).toInt()}+"
                     }
                 }
                 chart.xAxis.gridColor = weakColor
@@ -151,9 +149,14 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
                 chart.axisRight.gridColor = weakColor
 
                 chart.getAxis(YAxis.AxisDependency.LEFT).setDrawZeroLine(true)
-                chart.getAxis(YAxis.AxisDependency.LEFT).zeroLineColor = ColorTemplate.rgb("#FF000000")
+                chart.getAxis(YAxis.AxisDependency.LEFT).zeroLineColor =
+                    ColorTemplate.rgb("#FF000000")
 
-                chart.highlightValue(Statistics.getColumnByRate(list[pos].userRate).toFloat(), 0, false)
+                chart.highlightValue(
+                    Statistics.getColumnByRate(list[pos].userRate).toFloat(),
+                    0,
+                    false
+                )
 
                 chart.legend.isEnabled = false
                 invalidate()
