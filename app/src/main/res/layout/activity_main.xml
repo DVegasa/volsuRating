@@ -26,7 +26,9 @@
             tools:visibility="visible"
             android:visibility="gone"
             android:textAlignment="center"
-            android:background="#D4D4D4"/>
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            />
 
     <LinearLayout
             android:id="@+id/llTopPanel"
@@ -46,6 +48,7 @@
                 android:layout_weight="1">
 
             <TextView
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -60,7 +63,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat"
                     android:textColor="#000"
-                    android:textSize="42sp"
+                    android:textSize="36sp"
                     tools:text="3" />
         </FrameLayout>
 
@@ -71,6 +74,7 @@
                 android:layout_weight="1">
 
             <TextView
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -85,7 +89,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat"
                     android:textColor="#000"
-                    android:textSize="42sp"
+                    android:textSize="36sp"
                     tools:text="244" />
         </FrameLayout>
     </LinearLayout>
@@ -112,6 +116,6 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSubjects"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
