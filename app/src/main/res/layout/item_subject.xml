@@ -4,14 +4,15 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:paddingLeft="12dp"
         android:paddingTop="12dp"
-        android:paddingBottom="12dp"
         android:paddingRight="12dp"
-        android:paddingLeft="12dp">
+        android:paddingBottom="12dp">
 
     <TextView
-            style="@style/AppTheme.TextViewSubjectName"
             android:id="@+id/tvEmoji"
+            style="@style/AppTheme.TextViewSubjectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="👍" />
@@ -25,8 +26,8 @@
             android:orientation="vertical">
 
         <TextView
-                style="@style/AppTheme.TextViewSubjectName"
                 android:id="@+id/tvSubjectName"
+                style="@style/AppTheme.TextViewSubjectName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -42,22 +43,22 @@
     </LinearLayout>
 
     <TextView
-            style="@style/AppTheme.TextViewSubjectNumber"
             android:id="@+id/tvRating"
+            style="@style/AppTheme.TextViewSubjectNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             tools:text="47" />
 
     <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/flExpandablePart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="59dp"
-            android:visibility="gone"
             android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            android:visibility="gone"
             tools:visibility="visible">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -68,39 +69,43 @@
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
             <TextView
-                    style="@style/AppTheme.TextViewSubjectNumber"
                     android:id="@+id/tvSubjRating"
+                    style="@style/AppTheme.TextViewSubjectNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="2 из 25"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    tools:text="2 из 25" />
+
             <TextView
                     style="@style/AppTheme.TextViewSubjectName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Рейтинг в этом предмете"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:text="Рейтинг в этом предмете" />
         </FrameLayout>
 
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
             <TextView
-                    style="@style/AppTheme.TextViewSubjectNumber"
                     android:id="@+id/tvMedian"
+                    style="@style/AppTheme.TextViewSubjectNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="32"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    tools:text="32" />
+
             <TextView
+                    style="@style/AppTheme.TextViewSubjectName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Медианное значение"
                     android:layout_gravity="center_vertical"
-                    style="@style/AppTheme.TextViewSubjectName"/>
+                    android:text="Медианное значение" />
         </FrameLayout>
 
     </LinearLayout>
