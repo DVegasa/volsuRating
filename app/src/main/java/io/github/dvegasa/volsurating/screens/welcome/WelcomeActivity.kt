@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import io.github.dvegasa.volsurating.R
-import io.github.dvegasa.volsurating.screens.zachetka_picker_fragment.ZachetkaPickerFragment
-import io.github.dvegasa.volsurating.screens.main.MainActivity
 import io.github.dvegasa.volsurating.models.UserData
+import io.github.dvegasa.volsurating.screens.main.MainActivity
+import io.github.dvegasa.volsurating.screens.zachetka_picker_fragment.ZachetkaPickerFragment
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
 import kotlinx.android.synthetic.main.activity_welcome.*
 
@@ -16,7 +16,7 @@ class WelcomeActivity : AppCompatActivity(),
 
     private val zachetkaPickerFragment =
         ZachetkaPickerFragment()
-    private val userDataStorage = SharedPrefCache(this)
+    private val cache = SharedPrefCache(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +24,8 @@ class WelcomeActivity : AppCompatActivity(),
         setSupportActionBar(toolbarDef)
         supportActionBar?.setTitle("ВолГУ рейтинг")
 
-        if (userDataStorage.isUserDataSaved()) {
-            Log.d("ed__", "Data saved:\n${userDataStorage.getUserData()}")
+        if (cache.isUserDataSaved()) {
+            Log.d("ed__", "Data saved:\n${cache.getUserData()}")
         }
 
         btnNext.setOnClickListener {
@@ -54,7 +54,7 @@ class WelcomeActivity : AppCompatActivity(),
             commit()
         }
         Log.d("ed__", "Data received: $data")
-        userDataStorage.saveUserData(data)
+        cache.saveUserData(data)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

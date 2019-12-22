@@ -63,13 +63,13 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
         @SuppressLint("SetTextI18n")
         fun bind(pos: Int) {
             if (pos == list.size) {
-                initHiddentTitle(v, pos)
+                initHiddenTitle(v, pos)
             } else {
                 initSubjectTitle(v, pos)
             }
         }
 
-        private fun initHiddentTitle(v: View, pos: Int) {
+        private fun initHiddenTitle(v: View, pos: Int) {
             if (hiddenSubjects.isEmpty()) return
 
             v.apply {
