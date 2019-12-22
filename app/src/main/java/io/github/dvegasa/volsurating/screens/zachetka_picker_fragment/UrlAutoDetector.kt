@@ -6,11 +6,11 @@ import android.webkit.WebView
 /**
  * 10.12.2019
  */
-class UrlAutoDetector(val webView: WebView, val cb: Callback) {
+class UrlAutoDetector(private val webView: WebView, private val cb: Callback) {
 
-    val handler = Handler()
+    private val handler = Handler()
 
-    val thread = Thread(Runnable {
+    private val thread = Thread(Runnable {
         try {
             while (!Thread.interrupted()) {
                 var url: String

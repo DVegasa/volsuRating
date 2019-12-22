@@ -1,4 +1,4 @@
-
+package io.github.dvegasa.volsurating.data_processing.network
 import android.util.Log
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -6,7 +6,7 @@ import org.jsoup.select.Elements
 /**
  * 09.12.2019
  */
-class VolsuRatingHtmlParser(val doc: Document) {
+class VolsuRatingHtmlParser(private val doc: Document) {
 
     fun getSchoolboysData(): Map<Int, ArrayList<Int>> {
         val map = HashMap<Int, ArrayList<Int>>()

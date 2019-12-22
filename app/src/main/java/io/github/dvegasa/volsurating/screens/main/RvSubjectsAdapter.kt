@@ -59,7 +59,7 @@ class RvSubjectsAdapter(private var list: ArrayList<SubjectRich>) :
         holder.bind(position)
     }
 
-    inner class VH(val v: View) : RecyclerView.ViewHolder(v) {
+    inner class VH(private val v: View) : RecyclerView.ViewHolder(v) {
         @SuppressLint("SetTextI18n")
         fun bind(pos: Int) {
             if (pos == list.size) {

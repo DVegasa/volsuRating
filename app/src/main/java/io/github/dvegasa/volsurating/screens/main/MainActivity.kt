@@ -42,11 +42,10 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             Log.d("ed__", "MainActivity: Data updated!")
             swipeRvSubjects.isRefreshing = false
-            val status = p1?.getStringExtra("status")
 
-            when (status) {
+            when (p1?.getStringExtra("status")) {
                 BroadcastEvents.DATA_UPDATED -> {
-                    val dataJsoned = p1?.getStringExtra("msg") ?: ""
+                    val dataJsoned = p1.getStringExtra("msg") ?: ""
                     val data: ArrayList<SubjectRich> = Gson().fromJson(dataJsoned)
 
                     showData(data)

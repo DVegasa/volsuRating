@@ -4,7 +4,6 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:paddingRight="12dp"
@@ -47,7 +46,7 @@
             android:id="@+id/tvRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             tools:text="47" />
 
     <LinearLayout
@@ -74,7 +73,7 @@
                     android:id="@+id/tvSubjRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     tools:text="2 из 25"
                     android:gravity="center_vertical"/>
             <TextView
@@ -93,7 +92,7 @@
                     android:id="@+id/tvMedian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     tools:text="32"
                     android:gravity="center_vertical"/>
             <TextView

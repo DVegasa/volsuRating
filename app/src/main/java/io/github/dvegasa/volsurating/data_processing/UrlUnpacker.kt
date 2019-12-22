@@ -13,7 +13,7 @@ val matchingRegex = """
             https:\/\/volsu.ru\/rating\/\?plan_id=(\S+)&zach=(\d+)&semestr=(\d)&group=(\S+)
         """.trimIndent()
 
-class UrlParser(var url: String) {
+class UrlParser(private var url: String) {
 
     init {
         url = decode(url)

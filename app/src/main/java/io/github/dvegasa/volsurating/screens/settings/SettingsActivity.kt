@@ -95,7 +95,7 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.me/dvegasa")))
                 true
             }
-            
+
             findPreference<Preference>("settingsVersion")?.summary =
                 "Версия приложения ${BuildConfig.VERSION_NAME}"
             if (context != null) {

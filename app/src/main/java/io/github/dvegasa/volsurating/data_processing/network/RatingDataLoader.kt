@@ -1,6 +1,5 @@
 package io.github.dvegasa.volsurating.data_processing.network
 
-import VolsuRatingHtmlParser
 import android.util.Log
 import io.github.dvegasa.volsurating.data_processing.BroadcastEvents
 import io.github.dvegasa.volsurating.models.SubjectRich

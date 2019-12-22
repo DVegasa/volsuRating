@@ -48,7 +48,7 @@ class Statistics {
             }
             val userRating = getSubjRating(subj)
             val result = when (userRating) {
-                in iFirst..999 -> Emoji.exlamation
+                in iFirst..999 -> Emoji.exclamation
                 in iSecond..iFirst -> Emoji.novice
                 in 0..iSecond -> Emoji.thumbUp
                 else -> Emoji.question
