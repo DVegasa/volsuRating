@@ -14,40 +14,40 @@
             android:layout_height="match_parent" />
 
     <FrameLayout
-            android:visibility="invisible"
-            tools:visibility="visible"
             android:id="@+id/flBottomInformer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_bottom_informer"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_margin="16dp"
-            android:orientation="horizontal">
+            android:background="@drawable/bg_bottom_informer"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            tools:visibility="visible">
 
         <TextView
                 android:id="@+id/tvInformerText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Зачётка №962934\nГруппа МОСб-192"
-                android:textColor="#FFF"
                 android:layout_margin="12dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="18dp"
-                android:textSize="14sp"/>
+                android:text="Зачётка №962934\nГруппа МОСб-192"
+                android:textColor="#FFF"
+                android:textSize="14sp" />
 
         <Button
                 android:id="@+id/btnConfirm"
+                style="@style/AppTheme.ButtonWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.ButtonWhite"
-                android:text="Подтвердить"
-                android:textSize="16sp"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:layout_gravity="end|center_vertical"
-                android:layout_margin="12dp"/>
+                android:layout_margin="12dp"
+                android:paddingLeft="18dp"
+                android:paddingTop="8dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="8dp"
+                android:text="Подтвердить"
+                android:textSize="16sp" />
 
     </FrameLayout>
 
@@ -55,11 +55,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:textColor="#FFF"
             android:fontFamily="@font/ptsans_bold"
-            android:textAlignment="center"
-            android:text="Выбери свой институт, направление,\nгруппу, семестр и зачётную книжку"
-            android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:textSize="18sp"/>
+            android:paddingBottom="8dp"
+            android:text="Выбери свой институт, направление,\nгруппу, семестр и зачётную книжку"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textSize="18sp" />
 </FrameLayout>

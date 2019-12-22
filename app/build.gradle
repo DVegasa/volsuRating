@@ -11,8 +11,8 @@ android {
         applicationId "io.github.dvegasa.volsurating"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.2-snapshot"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

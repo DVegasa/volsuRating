@@ -8,7 +8,17 @@
 
     <color name="colorButtonSmallNormal">@color/colorPrimary</color>
     <color name="colorButtonSmallPressed">@color/colorPrimaryDark</color>
-    <color name="colorButtonSmallDisabled">#540058DB</color>
+    <color name="colorButtonSmallDisabled">#5413345E</color>
     <color name="colorButtonSmallText">#FFF</color>
+
+    <color name="colorButtonWhiteNormal">#fff</color>
+    <color name="colorButtonWhitePressed">#AFAFAF</color>
+    <color name="colorButtonWhiteDisabled">#54FFFFFF</color>
+
+    <color name="colorLineSeparator">#E4E4E4</color>
+
+    <color name="colorTextCaption">#626262</color>
+    <color name="colorTextBigNumber">#000</color>
+    <color name="colorTextSubject">#000</color>
 
 </resources>

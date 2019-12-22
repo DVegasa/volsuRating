@@ -14,17 +14,35 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import io.github.dvegasa.volsurating.BuildConfig
+import io.github.dvegasa.volsurating.R
 import io.github.dvegasa.volsurating.data_processing.UsefullDataManager
 import io.github.dvegasa.volsurating.screens.main.MainActivity
 import io.github.dvegasa.volsurating.storage.SharedPrefCache
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, key: String?) {
         if (key == "semestr") {
             Log.d("ed__", "onSharedPreferenceChanged: key = 'semestr'")
             UsefullDataManager(this).forceRefrestData()
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
+
+        setSupportActionBar(toolbarDef)
+        setTheme(R.style.AppTheme_SettingsActivityStyle)
+        supportActionBar?.title = "Настройки"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, SettingsFragment())
+            .commit()
     }
 
     override fun onResume() {
@@ -39,16 +57,6 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         super.onDestroy()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(io.github.dvegasa.volsurating.R.layout.settings_activity)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(io.github.dvegasa.volsurating.R.id.settings, SettingsFragment())
-            .commit()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -56,21 +64,24 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(
-                io.github.dvegasa.volsurating.R.xml.root_preferences,
+                R.xml.root_preferences,
                 rootKey
             )
+
             findPreference<Preference>("settingsLogout")?.setOnPreferenceClickListener {
                 if (context != null) {
                     clearUserData(context!!)
                 }
                 true
             }
+
             findPreference<Preference>("settingsAuthor")?.setOnPreferenceClickListener {
                 if (context != null) {
                     Toast.makeText(context, "♥", Toast.LENGTH_SHORT).show()
                 }
                 true
             }
+
             findPreference<Preference>("settingsContactDeveloper")?.setOnPreferenceClickListener { pref ->
                 pref.title = "Ожидайте..."
                 pref.isEnabled = false
@@ -84,6 +95,7 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.me/dvegasa")))
                 true
             }
+            
             findPreference<Preference>("settingsVersion")?.summary =
                 "Версия приложения ${BuildConfig.VERSION_NAME}"
             if (context != null) {

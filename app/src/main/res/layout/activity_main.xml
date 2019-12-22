@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="@color/colorBackground"
         tools:context=".screens.main.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,25 +15,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:padding="2dp"
             android:id="@+id/tvAnnouncement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="2dp"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbarDef"
             tools:text="Объявление"
-            tools:visibility="visible"
-            android:visibility="gone"
-            android:textAlignment="center"
-            android:background="@color/colorPrimary"
-            android:textColor="#fff"
-            />
+            tools:visibility="visible" />
 
     <LinearLayout
             android:id="@+id/llTopPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="8dp"
@@ -48,22 +48,19 @@
                 android:layout_weight="1">
 
             <TextView
-                    android:textSize="13sp"
+                    style="@style/AppTheme.TextViewCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Рейтинг в группе"
-                    android:textColor="#626262" />
+                    android:text="Рейтинг в группе" />
 
             <TextView
                     android:id="@+id/tvRating"
+                    style="@style/AppTheme.TextViewBigNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:textColor="#000"
-                    android:textSize="36sp"
                     tools:text="3" />
         </FrameLayout>
 
@@ -74,32 +71,27 @@
                 android:layout_weight="1">
 
             <TextView
-                    android:textSize="13sp"
+                    style="@style/AppTheme.TextViewCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Сумма баллов"
-                    android:textColor="#626262" />
+                    android:text="Сумма баллов" />
 
             <TextView
                     android:id="@+id/tvScore"
+                    style="@style/AppTheme.TextViewBigNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:textColor="#000"
-                    android:textSize="36sp"
                     tools:text="244" />
         </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
             android:id="@+id/separator"
+            style="@style/AppTheme.LineSeparator"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llTopPanel" />

@@ -2,6 +2,7 @@ package io.github.dvegasa.volsurating.screens.zachetka_picker_fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -51,6 +52,10 @@ class ZachetkaPickerFragment : Fragment(), UrlAutoDetector.Callback {
 
         v.webView.loadUrl(ZACHETKA_PICKER_URL)
         v.webView.settings.javaScriptEnabled = true
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            v.flBottomInformer.elevation = 25f
+        }
     }
 
     override fun onAttach(context: Context) {

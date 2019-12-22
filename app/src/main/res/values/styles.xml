@@ -3,12 +3,15 @@
     <!-- Base application theme. -->
     <style name="AppTheme"
             parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:fontFamily">@font/ptsans</item>
+    </style>
+
+    <style name="AppTheme.SettingsActivityStyle">
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="Toolbar">
@@ -34,5 +37,40 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:minHeight">36dip</item>
         <item name="android:minWidth">24dip</item>
+    </style>
+
+    <style name="AppTheme.TextViewBigNumber">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorTextBigNumber</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="AppTheme.TextViewCaption">
+        <item name="android:textColor">@color/colorTextCaption</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="AppTheme.TextViewSubjectName">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/colorTextSubject</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.TextViewSubjectNumber">
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorTextBigNumber</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="AppTheme.TextViewWelcome">
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.LineSeparator">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorLineSeparator</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>
