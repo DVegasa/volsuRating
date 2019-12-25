@@ -100,7 +100,7 @@ class Statistics {
         }
 
         fun getColumnByRate(rate: Int) = when (rate) {
-            in 0..5 -> 0
+            in Integer.MIN_VALUE..5 -> 0
             in 6..10 -> 1
             in 11..15 -> 2
             in 16..20 -> 3
@@ -119,8 +119,8 @@ class Statistics {
             in 81..85 -> 16
             in 86..90 -> 17
             in 91..95 -> 18
-            in 96..100 -> 19
-            else -> -1
+            in 96..Integer.MAX_VALUE -> 19
+            else -> 0
         }
 
         fun getSubjRating(subj: SubjectRich): Int {
