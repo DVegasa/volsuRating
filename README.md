@@ -1,4 +1,5 @@
 # ВолГУ Рейтинг
+<a href="https://drive.google.com/open?id=1vDIOVVMUbiIThmju3-0GPbWqGW-kqJZy"><img src="https://i.ibb.co/WzYbb78/Download.png" alt="Download APK" border="0"></a>
 ![Showcase](https://i.ibb.co/vJBp4Jp/Group-1-small.png)
 
 ## Итог разработки
@@ -158,3 +159,4 @@
 Исходный код проекта доступен на моём GitHub – https://github.com/DVegasa/volsuRating
 
 Ссылка для скачивания APK файла – https://drive.google.com/open?id=1vDIOVVMUbiIThmju3-0GPbWqGW-kqJZy	
+<a href="https://drive.google.com/open?id=1vDIOVVMUbiIThmju3-0GPbWqGW-kqJZy"><img src="https://i.ibb.co/WzYbb78/Download.png" alt="Download APK" border="0"></a>
